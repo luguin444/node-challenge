@@ -1,7 +1,9 @@
+require("express-async-errors");
 const express = require("express");
 const logger = require("morgan");
 
 const userRouter = require("./modules/users/routes");
+const stockRouter = require("./modules/stocks/routes");
 
 const app = express();
 
@@ -10,15 +12,15 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 app.use("/", userRouter);
+app.use("/", stockRouter);
 
-app.use(function (err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get("env") === "development" ? err : {};
+app.use(function (error, req, res, next) {
+  const status = error.status || 500;
 
-  // render the error page
-  res.status(err.status || 500);
-  res.render("error");
+  res.status(status).json({
+    name: error.name,
+    message: error.message,
+  });
 });
 
 module.exports = app;

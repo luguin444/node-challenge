@@ -1,9 +1,13 @@
 const { v4: uuidv4 } = require("uuid");
 const { prisma } = require("../../../libs/prisma");
+const { hash } = require("bcrypt");
 
 class RegisterUserUseCase {
   async execute(data) {
     const { email, role } = data;
+
+    const password = uuidv4();
+    const hashedPassword = await hash(password, 10);
 
     const roles = {
       user: "USER",
@@ -14,11 +18,11 @@ class RegisterUserUseCase {
       data: {
         email,
         role: roles[role],
-        password: uuidv4(),
+        password: hashedPassword,
       },
     });
 
-    return { email: user.email, password: user.password };
+    return { email: user.email, password };
   }
 }
 
