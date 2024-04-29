@@ -1,5 +1,6 @@
 const { faker } = require("../../libs/faker");
 const { prisma } = require("../../libs/prisma");
+const { userFactory } = require("./user");
 
 async function queryFactory(data = {}) {
   const dataToBeCreated = {

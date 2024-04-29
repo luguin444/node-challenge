@@ -1,7 +1,7 @@
 const { getTop5UseCase } = require("./useCase");
 
 class GetTop5Controller {
-  async handle(req, res) {
+  async handle(_req, res) {
     const stocks = await getTop5UseCase.execute();
     res.status(200).send(stocks);
   }
