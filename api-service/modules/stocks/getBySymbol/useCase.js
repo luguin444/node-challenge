@@ -25,23 +25,10 @@ class GetStockBySymbolUseCase {
   async getStockData(stockSymbol) {
     try {
       const response = await axios.get(
-        `${process.env.STOCK_API_URL}?s=${stockSymbol}&f=sd2t2ohlcvn&h&e=csv`
+        `${process.env.STOCK_SERVICE_URL}/stocks?q=${stockSymbol}`
       );
 
-      const data = response.data.split("\n")[1];
-      const [symbol, _date, _time, open, high, low, close, _volume, name] =
-        data.split(",");
-
-      if (open === "N/D") return null;
-
-      return {
-        name: name.replace("\r", ""),
-        symbol,
-        open: parseFloat(open),
-        high: parseFloat(high),
-        low: parseFloat(low),
-        close: parseFloat(close),
-      };
+      return response.data;
     } catch (_e) {
       return null;
     }

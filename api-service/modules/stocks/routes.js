@@ -1,7 +1,7 @@
 const express = require("express");
 const { getStockBySymbolController } = require("./getBySymbol/controller");
 const { verifyJWT } = require("../../middlewares/verifyJwt");
-const { getTop5Controller } = require("./getTop5/controller");
+const { getTop5Controller } = require("./getTop5Requested/controller");
 const { verifyAdminUser } = require("../../middlewares/verifyAdminUser");
 
 const stockRouter = express.Router();
