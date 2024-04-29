@@ -12,8 +12,8 @@ const getDefaultPayload = async () => {
   };
 };
 
-const generateJwtToken = async (payload) => {
-  if (payload == null) {
+const generateJwtToken = async (payload = null) => {
+  if (payload === null) {
     payload = await getDefaultPayload();
   }
 
@@ -30,4 +30,4 @@ const getHeadersObjectWithCorrectJWT = async (token = null) => {
   };
 };
 
-module.exports = { getHeadersObjectWithCorrectJWT };
+module.exports = { generateJwtToken, getHeadersObjectWithCorrectJWT };
