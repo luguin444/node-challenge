@@ -6,7 +6,7 @@ const { getHistoryOfSearchController } = require("./searchHistory/controller");
 
 const userRouter = express.Router();
 
-userRouter.post("/register", registerUserController.handle);
+userRouter.post("/register", verifyJWT, registerUserController.handle);
 userRouter.post("/login", authenticateUserController.handle);
 
 userRouter.get("/history", verifyJWT, getHistoryOfSearchController.handle);

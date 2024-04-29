@@ -1,4 +1,5 @@
 require("express-async-errors");
+require("./config/env");
 const express = require("express");
 const logger = require("morgan");
 

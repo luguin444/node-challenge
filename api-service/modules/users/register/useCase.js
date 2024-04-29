@@ -1,10 +1,17 @@
 const { v4: uuidv4 } = require("uuid");
 const { prisma } = require("../../../libs/prisma");
 const { hash } = require("bcrypt");
+const { ConflictError } = require("../../../errors/http/conflictError");
 
 class RegisterUserUseCase {
   async execute(data) {
     const { email, role } = data;
+
+    const userWithSameEmail = await prisma.user.findFirst({
+      where: { email },
+    });
+    if (userWithSameEmail)
+      throw new ConflictError("User already exists with this email");
 
     const password = uuidv4();
     const hashedPassword = await hash(password, 10);

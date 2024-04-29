@@ -1,5 +1,5 @@
 const axios = require("axios");
-const { NotFoundError } = require("../../../errors/http/not-found-error");
+const { NotFoundError } = require("../../../errors/http/notFoundError");
 const { prisma } = require("../../../libs/prisma");
 
 class GetStockBySymbolUseCase {

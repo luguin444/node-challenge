@@ -1,7 +1,7 @@
 const { prisma } = require("../../../libs/prisma");
 const {
   AuthenticationError,
-} = require("../../../errors/http/authentication-error");
+} = require("../../../errors/http/authenticationError");
 const { compare } = require("bcrypt");
 const jwt = require("jsonwebtoken");
 

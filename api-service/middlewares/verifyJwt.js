@@ -1,5 +1,5 @@
 const { prisma } = require("../libs/prisma");
-const { AuthenticationError } = require("../errors/http/authentication-error");
+const { AuthenticationError } = require("../errors/http/authenticationError");
 const jwt = require("jsonwebtoken");
 
 async function verifyJWT(req, _res, next) {
