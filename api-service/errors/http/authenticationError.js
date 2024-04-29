@@ -1,4 +1,4 @@
-const { HttpError } = require("./http-error");
+const { HttpError } = require("./httError");
 
 class AuthenticationError extends HttpError {
   constructor(message) {

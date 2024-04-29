@@ -1,4 +1,4 @@
-const { HttpError } = require("./http-error");
+const { HttpError } = require("./httError");
 
 class NotFoundError extends HttpError {
   constructor(message) {
