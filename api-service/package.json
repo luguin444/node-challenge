@@ -6,7 +6,8 @@
     "start": "node ./bin/www",
     "migrate:dev": "npx prisma migrate dev",
     "pretest": "NODE_ENV=test dotenv -e .env.test npx prisma migrate dev",
-    "test": "NODE_ENV=test npx jest --no-cache --forceExit --runInBand"
+    "test": "NODE_ENV=test npx jest --no-cache --forceExit --runInBand",
+    "seed": "node ./prisma/seed.js"
   },
   "dependencies": {
     "@prisma/client": "^5.13.0",
