@@ -48,4 +48,14 @@ To run this project in development, follow the steps below:
 
 ## How to run the tests?
 
-1. Para poder executar os testes, será necessário criar um outro arquivo `.env.test` com base no `.env.example`;
+1. To be able to run the tests, you'll need to create another `.env.test` file based on the `.env.example.test` file for both the api-service and stock-service servers.
+
+2. Run in "node-challenge" directory:
+
+`docker-compose -f docker-compose.test.yml build`
+
+3. Run in "node-challenge" directory:
+
+`docker-compose -f docker-compose.test.yml up`
+
+The tests will be printed

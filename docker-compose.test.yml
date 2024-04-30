@@ -1,0 +1,37 @@
+version: '3.8'
+services:
+  api_server_test:
+    build:
+      context: ./api-service
+      dockerfile: Dockerfile.test
+    ports:
+      - "3003:3003"
+    depends_on:
+      - postgres_db_test
+    env_file:
+      - ./api-service/.env.test
+  
+  stock_server_test:
+    build:
+      context: ./stock-service
+      dockerfile: Dockerfile
+    ports:
+      - "3004:3004"
+    env_file:
+      - ./stock-service/.env.test
+
+  postgres_db_test:
+    build:
+      context: ./api-service
+      dockerfile: Dockerfile.database.test
+    container_name: postgres_db_test
+    restart: always
+    command: postgres -p 5433
+    ports:
+      - "5433:5433"
+    env_file:
+      - ./api-service/.env.test
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+volumes:
+  pgdata:
