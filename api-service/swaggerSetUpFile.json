@@ -298,6 +298,35 @@
           }
         }
       }
+    },
+    "/reset_password": {
+      "post": {
+        "summary": "Reset Password and send new one to the user email",
+        "description": "Allows users to reset their password.",
+        "security": [{ "JWT": [] }],
+        "responses": {
+          "200": {
+            "description": "Password reset successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "Indicates whether password reset was successful"
+                    }
+                  },
+                  "required": ["success"]
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized (missing or invalid JWT token)"
+          }
+        }
+      }
     }
   }
 }
