@@ -37,7 +37,7 @@ To check, run: `docker -v` and `docker-compose -v`
 
 `docker-compose up -d --build`
 
-5. This will start both servers and the PostgreSQL database. You can verify this by running:
+5. This will start with both servers and the PostgreSQL database. You can verify this by running:
 
 `docker ps`
 
@@ -59,14 +59,14 @@ To check, run: `node -v` and `postgres --version`
 
 2. Open to terminal tabs:
 
-- The first in directory: `cd node-challenge/api-service`
+- The first in the directory: `cd node-challenge/api-service`
 - The second: `cd node-challenge/stock-service`
 
 3. Both terminals run `npm i`
 
 4. Create the `.env file` based on the `.env.example` for each server, api-server, and stock-server. Use the "RUN IN MACHINE" variables
 
-5. Create your development and test databases in your postgres:
+5. Create your development and test databases in your Postgres:
    -Development: `CREATE DATABASE development_node_challenge;`
    -Test: `CREATE DATABASE test_node_challenge;`
 
@@ -80,8 +80,13 @@ To check, run: `node -v` and `postgres --version`
 
 `docker-compose -f docker-compose.test.yml build`
 
-3. Run in "node-challenge" directory:
+3. Run in the same directory "node-challenge":
 
 `docker-compose -f docker-compose.test.yml up`
 
 The tests will be printed
+
+PS: If you want to run the test without containers, you can do it by `npm run test`. Just make sure:
+
+- Your postgres has the ` test_node_challenge` database.
+- Both `.env.test` are filled with the correct variables from `.env.example.test`
