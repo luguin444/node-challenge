@@ -15,7 +15,7 @@ router.get("/stocks", async function (req, res) {
     const [symbol, _date, _time, open, high, low, close, _volume, name] =
       data.split(",");
 
-    if (open === "N/D") return null;
+    if (open === "N/D") return res.status(404).send(null);
 
     res.status(200).send({
       name: name.replace("\r", ""),

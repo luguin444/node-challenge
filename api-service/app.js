@@ -1,6 +1,8 @@
 require("express-async-errors");
 require("./config/env");
 const express = require("express");
+const swaggerUi = require("swagger-ui-express");
+const swaggerSetUpFile = require("./swaggerSetUpFile.json");
 const logger = require("morgan");
 
 const userRouter = require("./modules/users/routes");
@@ -12,6 +14,7 @@ app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
+app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerSetUpFile));
 app.use("/", userRouter);
 app.use("/", stockRouter);
 

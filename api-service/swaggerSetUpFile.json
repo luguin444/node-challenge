@@ -1,0 +1,303 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Stock Server API",
+    "description": "API for getting information about stocks.",
+    "version": "1.0.0",
+    "contact": {
+      "email": "luguin4444@gmail.com"
+    }
+  },
+  "securityDefinitions": {
+    "JWT": {
+      "type": "apiKey",
+      "name": "x-access-token",
+      "in": "header"
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "JWT": {
+        "type": "apiKey",
+        "name": "x-access-token",
+        "in": "header"
+      }
+    }
+  },
+  "paths": {
+    "/register": {
+      "post": {
+        "summary": "Register a User",
+        "description": "Registers a new user with email and role, returning a randomized password.",
+        "security": [
+          {
+            "JWT": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string",
+                    "description": "The user's email address.",
+                    "example": "johndoe@contoso.com"
+                  },
+                  "role": {
+                    "type": "string",
+                    "description": "The user's role (user or admin).",
+                    "enum": ["user", "user/admin"],
+                    "example": "user"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful registration",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "email": {
+                      "type": "string",
+                      "description": "The user's email address.",
+                      "example": "johndoe@contoso.com"
+                    },
+                    "password": {
+                      "type": "string",
+                      "description": "The randomly generated password.",
+                      "example": "bf1098c1-cd77-4f22-8676-9c709bb1fb37"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Bad Request (invalid email, role, or missing data)"
+          },
+          "401": {
+            "description": "Unauthorized (missing or invalid JWT)"
+          },
+          "409": {
+            "description": "Confict Error: email already exists"
+          }
+        }
+      }
+    },
+    "/login": {
+      "post": {
+        "summary": "Authenticate a User",
+        "description": "Authenticate a user with email and password, returning a JWT token",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string",
+                    "description": "The user's email address.",
+                    "example": "johndoe@contoso.com"
+                  },
+                  "password": {
+                    "type": "string",
+                    "description": "The user's password.",
+                    "example": "password123"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful authentication",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "token": {
+                      "type": "string",
+                      "description": "JWT token",
+                      "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMyLCJzZXNzaW9uSWQiOjE2LCJpYXQiOjE3MTQ1MTc4ODksImV4cCI6MTcxNzEwOTg4OX0.P5907yGtpV-DJNf2ZY5mgALVI8wg0f82lC33F3XSkMk"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Bad Request (invalid email, password, or missing data)"
+          },
+          "401": {
+            "description": "Credentials is not valid"
+          }
+        }
+      }
+    },
+    "/history": {
+      "get": {
+        "summary": "Get User's Search History",
+        "description": "Returns the list of past searches made by the user.",
+        "security": [{ "JWT": [] }],
+        "responses": {
+          "200": {
+            "description": "Successful retrieval of search history",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "date": {
+                        "type": "string",
+                        "format": "date-time",
+                        "description": "Date and time of the search"
+                      },
+                      "name": {
+                        "type": "string",
+                        "description": "Name of the searched stock"
+                      },
+                      "symbol": {
+                        "type": "string",
+                        "description": "Stock symbol"
+                      },
+                      "open": {
+                        "type": "string",
+                        "description": "Opening price of the stock"
+                      },
+                      "high": {
+                        "type": "number",
+                        "description": "Highest price of the stock during the day"
+                      },
+                      "low": {
+                        "type": "number",
+                        "description": "Lowest price of the stock during the day"
+                      },
+                      "close": {
+                        "type": "string",
+                        "description": "Closing price of the stock"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized (missing or invalid JWT token)"
+          }
+        }
+      }
+    },
+    "/stats": {
+      "get": {
+        "summary": "Get Top Searched Stocks (Admin Only)",
+        "description": "Returns the top 5 most searched stocks by users.",
+        "security": [{ "JWT": [] }, { "x-roles": ["USER_ADMIN"] }],
+        "responses": {
+          "200": {
+            "description": "Successful retrieval of top searched stocks",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "stock": {
+                        "type": "string",
+                        "description": "Stock symbol"
+                      },
+                      "times_requested": {
+                        "type": "integer",
+                        "description": "Number of times the stock was searched"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized (missing or invalid JWT token or User is not an admin)"
+          }
+        }
+      }
+    },
+    "/stock": {
+      "get": {
+        "summary": "Get Stock Information",
+        "description": "Returns detailed information about a specific stock based on the provided symbol.",
+        "parameters": [
+          {
+            "name": "q",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": "The stock symbol to retrieve information for (e.g., 'ABEV.US')."
+          }
+        ],
+        "security": [{ "JWT": [] }],
+        "responses": {
+          "200": {
+            "description": "Successful retrieval of stock information",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "description": "Full name of the company"
+                    },
+                    "symbol": {
+                      "type": "string",
+                      "description": "Stock symbol"
+                    },
+                    "open": {
+                      "type": "number",
+                      "description": "Opening price of the stock for the day"
+                    },
+                    "high": {
+                      "type": "number",
+                      "description": "Highest price of the stock during the day"
+                    },
+                    "low": {
+                      "type": "number",
+                      "description": "Lowest price of the stock during the day"
+                    },
+                    "close": {
+                      "type": "number",
+                      "description": "Closing price of the stock for the day"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized (missing or invalid JWT token)"
+          },
+          "404": {
+            "description": "Stock not found by the symbol"
+          },
+          "422": {
+            "description": "Stock symbol is required"
+          }
+        }
+      }
+    }
+  }
+}
