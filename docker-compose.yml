@@ -1,0 +1,36 @@
+version: '3.8'
+services:
+  api_server:
+    build:
+      context: ./api-service
+      dockerfile: Dockerfile
+    ports:
+      - "3001:3001"
+    depends_on:
+      - postgres_db
+    env_file:
+      - ./api-service/.env
+  
+  stock_server:
+    build:
+      context: ./stock-service
+      dockerfile: Dockerfile
+    ports:
+      - "3002:3002"
+    env_file:
+      - ./stock-service/.env
+
+  postgres_db:
+    build:
+      context: ./api-service
+      dockerfile: Dockerfile.database
+    container_name: postgres_db
+    restart: always
+    ports:
+      - "5432:5432"
+    env_file:
+      - ./api-service/.env
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+volumes:
+  pgdata:

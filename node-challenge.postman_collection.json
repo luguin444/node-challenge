@@ -1,0 +1,243 @@
+{
+	"info": {
+		"_postman_id": "8e13f8eb-fb02-424d-9564-7a980464e928",
+		"name": "node-challenge",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Health API",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3001",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001"
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Stock",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMyLCJzZXNzaW9uSWQiOjE2LCJpYXQiOjE3MTQ1MTc4ODksImV4cCI6MTcxNzEwOTg4OX0.P5907yGtpV-DJNf2ZY5mgALVI8wg0f82lC33F3XSkMk",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3001/stock?q=qqf",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"stock"
+					],
+					"query": [
+						{
+							"key": "q",
+							"value": "qqf"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Top 5",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMyLCJzZXNzaW9uSWQiOjE2LCJpYXQiOjE3MTQ1MTc4ODksImV4cCI6MTcxNzEwOTg4OX0.P5907yGtpV-DJNf2ZY5mgALVI8wg0f82lC33F3XSkMk",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3001/stats",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"stats"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Stock Internal Service",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjYsInNlc3Npb25JZCI6NSwiaWF0IjoxNzE0MzQxNzI0LCJleHAiOjE3MTY5MzM3MjR9.Dodmn6GFDEfru59OlLsU7LlCCJ-nqpJpNVlXg43hD-c",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3002/stocks?q=ABEV.US",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3002",
+					"path": [
+						"stocks"
+					],
+					"query": [
+						{
+							"key": "q",
+							"value": "ABEV.US"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Stock External",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjYsInNlc3Npb25JZCI6NSwiaWF0IjoxNzE0MzQxNzI0LCJleHAiOjE3MTY5MzM3MjR9.Dodmn6GFDEfru59OlLsU7LlCCJ-nqpJpNVlXg43hD-c",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://stooq.com/q/l?s=ABEV.US&f=sd2t2ohlcvn&h&e=csv",
+					"protocol": "https",
+					"host": [
+						"stooq",
+						"com"
+					],
+					"path": [
+						"q",
+						"l"
+					],
+					"query": [
+						{
+							"key": "s",
+							"value": "ABEV.US"
+						},
+						{
+							"key": "f",
+							"value": "sd2t2ohlcvn"
+						},
+						{
+							"key": "h",
+							"value": null
+						},
+						{
+							"key": "e",
+							"value": "csv"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get User History",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMyLCJzZXNzaW9uSWQiOjE2LCJpYXQiOjE3MTQ1MTc4ODksImV4cCI6MTcxNzEwOTg4OX0.P5907yGtpV-DJNf2ZY5mgALVI8wg0f82lC33F3XSkMk",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3001/history",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"history"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Register User",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInNlc3Npb25JZCI6MSwiaWF0IjoxNzE0NDQ4NzczfQ.2rFSPn48-CypCEo_ofIDoHpLqvFH2zJVDC_YI31h5io",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"johndoe3@contoso.com\",\n    \"role\": \"user\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3001/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Authenticate User",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"jobsity@gmail.com\",\n    \"password\": \"123\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3001/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
