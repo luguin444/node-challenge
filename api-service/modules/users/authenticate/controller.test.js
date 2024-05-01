@@ -3,7 +3,7 @@ const app = require("../../../app");
 const { userFactory } = require("../../../test/factories/user");
 
 describe("TEST POST /login", () => {
-  it("should call return 400, since the body has no password", async () => {
+  it("should call return 422, since the body has no password", async () => {
     const data = {
       email: "johndoe@contoso.com",
     };

@@ -19,7 +19,7 @@ describe("TEST POST /register", () => {
     expect(response.status).toBe(401);
   });
 
-  it("should call return 400, since the body has a role that does not exist", async () => {
+  it("should call return 422, since the body has a role that does not exist", async () => {
     const data = {
       email: "johndoe@contoso.com",
       role: "user INVALIDO",
