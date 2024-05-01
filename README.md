@@ -35,7 +35,7 @@ To run this project in development, follow the steps below:
 
 4. Navigate to the project directory "node-challenge" and run the following command to build and start the containers. `docker-compose up -d --build`
 
-- Troubleshooting: all ports must be free, otherwise the containers will not start. Maybe you must stop your local postgres before step 4: `sudo service postgresql stop`. You can check the PORT=5432 with `sudo lsof -i :5432`
+   - Troubleshooting: all ports must be free, otherwise the containers will not start. Maybe you must stop your local postgres before step 4: `sudo service postgresql stop`. You can check the PORT=5432 with `sudo lsof -i :5432`
 
 5. This will start with both servers and the PostgreSQL database. You can verify this by running: `docker ps`
 
