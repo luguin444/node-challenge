@@ -24,10 +24,10 @@ To run this project in development, follow the steps below:
 
 1. Ensure that docker and docker-compose are installed on your machine: Download here:
 
-- docker-compose: https://docs.docker.com/compose/install/
-- docker: https://www.docker.com/get-started/
-- Ubuntu: `sudo snap install docker`. To check, run: `docker -v` and `docker-compose -v`
-- Troubleshooting: If you have permissions problems, use `sudo` before the commands.
+   - docker-compose: https://docs.docker.com/compose/install/
+   - docker: https://www.docker.com/get-started/
+   - Ubuntu: `sudo snap install docker`. To check, run: `docker -v` and `docker-compose -v`
+     - Troubleshooting: If you have permissions problems, use `sudo` before the commands.
 
 2. Clone the repository: `git clone <repository_url>`
 
@@ -43,14 +43,14 @@ To run this project in development, follow the steps below:
 
 7. Manual tests can be conducted using the Postman software or OpenAPI/Swagger
 
-- OpenAPI/Swagger: Open in browser `localhost:3001/docs` and authenticate with the generated JWT.
-- Postman: grab a collection named `node-challenge.postman_collection.json` in the root of the project and load into the tool.
+   - OpenAPI/Swagger: Open in browser `localhost:3001/docs` and authenticate with the generated JWT.
+   - Postman: grab a collection named `node-challenge.postman_collection.json` in the root of the project and load into the tool.
 
 ## Documentation
 
 Please check in: `localhost:3001/docs` ( server api-server must be running )
 
-## How to run in development in the machine?
+## How to run in development without containers?
 
 1. Ensure that nodejs 16 and Postgres are installed on your machine
 
@@ -58,23 +58,23 @@ To check, run: `node -v` and `postgres --version`
 
 2. Open two terminal tabs:
 
-- The first in the directory: `cd node-challenge/api-service`
-- The second in the directory: `cd node-challenge/stock-service`
+   - The first in the directory: `cd node-challenge/api-service`
+   - The second in the directory: `cd node-challenge/stock-service`
 
 3. In both terminals run `npm i`
 
 4. Create the `.env file` based on the `.env.example` for each server, api-server, and stock-server. Use the "RUN IN MACHINE" variables
 
-- Troubleshooting: you must use the user, password and port from the postgresql of your machine;
+   - Troubleshooting: you must use the user, password and port from the postgresql of your machine;
 
 5. Create your development and test databases in your Postgres:
 
-- Development: `CREATE DATABASE development_node_challenge;`
-- Test: `CREATE DATABASE test_node_challenge;`
+   - Development: `CREATE DATABASE development_node_challenge;`
+   - Test: `CREATE DATABASE test_node_challenge;`
 
 6. Both terminals run `npm run start`.
 
-- Troubleshooting: If the containers are started, there will be conflict of ports. Stop them with: `docker stop <container_id>`
+   - Troubleshooting: If the containers are started, there will be conflict of ports. Stop them with: `docker stop <container_id>`
 
 ## How to run the tests?
 
@@ -84,7 +84,7 @@ To check, run: `node -v` and `postgres --version`
 
 3. Run in the same directory "node-challenge": `docker-compose -f docker-compose.test.yml up`
 
-The tests will be printed
+The tests will be printed !!
 
 PS: If you want to run the test without containers, you can do it by `npm run test`. Just make sure:
 
