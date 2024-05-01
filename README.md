@@ -26,14 +26,16 @@ To run this project in development, follow the steps below:
 
 - docker-compose: https://docs.docker.com/compose/install/
 - docker: https://www.docker.com/get-started/
-
-To check, run: `docker -v` and `docker-compose -v`
+- Ubuntu: `sudo snap install docker`. To check, run: `docker -v` and `docker-compose -v`
+- Troubleshooting: If you have permissions problems, use `sudo` before the commands.
 
 2. Clone the repository: `git clone <repository_url>`
 
 3. Create the `.env file` based on the `.env.example` for each server ( api-server, and stock-server ).
 
 4. Navigate to the project directory "node-challenge" and run the following command to build and start the containers. `docker-compose up -d --build`
+
+- Troubleshooting: all ports must be free, otherwise the containers will not start. Maybe you must stop your local postgres before step 4: `sudo service postgresql stop`. You can check the PORT=5432 with `sudo lsof -i :5432`
 
 5. This will start with both servers and the PostgreSQL database. You can verify this by running: `docker ps`
 
@@ -63,12 +65,16 @@ To check, run: `node -v` and `postgres --version`
 
 4. Create the `.env file` based on the `.env.example` for each server, api-server, and stock-server. Use the "RUN IN MACHINE" variables
 
+- Troubleshooting: you must use the user, password and port from the postgresql of your machine;
+
 5. Create your development and test databases in your Postgres:
 
 - Development: `CREATE DATABASE development_node_challenge;`
-- est: `CREATE DATABASE test_node_challenge;`
+- Test: `CREATE DATABASE test_node_challenge;`
 
-6. Both terminals run `npm run start`
+6. Both terminals run `npm run start`.
+
+- Troubleshooting: If the containers are started, there will be conflict of ports. Stop them with: `docker stop <container_id>`
 
 ## How to run the tests?
 
